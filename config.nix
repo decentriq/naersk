@@ -38,7 +38,7 @@ let
     gitSubmodules = attrs0.gitSubmodules or false;
 
     # Url for downloading crates from an alternative source
-    cratesDL = attrs0.cratesDL or null;
+    cratesDownloadUrl = attrs0.cratesDownloadUrl or "https://crates.io";
 
     # The command to use for the build.
     cargoBuild =
@@ -246,7 +246,7 @@ let
       override
       cargoOptions
       compressTarget
-      cratesDL
+      cratesDownloadUrl
 
       cargoBuild
       cargoBuildOptions

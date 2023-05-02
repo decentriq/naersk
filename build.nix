@@ -1,6 +1,6 @@
 { src
   #| From where the crates should be downloaded
-, cratesDL
+, cratesDownloadUrl
   #| What command to run during the build phase
 , cargoBuild
 , cargoBuildOptions
@@ -478,11 +478,7 @@ let
   # file that cargo itself uses to double check the sha256
   unpackCrate = name: version: sha256:
     let
-      url =
-      if ! isNull cratesDL
-      then "${cratesDL}/api/v1/crates/${name}/${version}/download"
-      else "https://crates.io/api/v1/crates/${name}/${version}/download";
-      
+      url = "${cratesDownloadUrl}/api/v1/crates/${name}/${version}/download";
       crate = fetchurl {
         inherit url;
         inherit sha256;
